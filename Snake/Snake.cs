@@ -63,7 +63,7 @@ namespace Snake
         }
 
 
-        private Point GetNextPoint()
+        public Point GetNextPoint()
         {
             return pList.Last().Next(direction);
         }

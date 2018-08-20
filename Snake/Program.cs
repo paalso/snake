@@ -11,8 +11,8 @@ namespace Snake
 
     class Program
     {
-        public static int WIDTH = 80;
-        public static int HEIGTH = 57;
+        public static int WIDTH = 100;
+        public static int HEIGTH = 40;
 
         public static void DrawField(int width, int heigth)
         {
@@ -28,31 +28,29 @@ namespace Snake
             leftLine.Draw();
             rightLine.Draw();
         }
-/*
-        public static Direction GetDirectionByKey(ConsoleKey key)
-        {
-            var direction;
-            switch
 
-        }
-*/
         static void Main(string[] args)
         {
-            // DrawField(WIDTH, HEIGTH);
-            var fieldWidth = Console.BufferWidth;
-            var fieldHeight = Console.BufferHeight;
-            DrawField(fieldWidth, fieldHeight);
+            Console.SetWindowSize(WIDTH, HEIGTH);
+            Console.SetBufferSize(WIDTH, HEIGTH);
+            Walls walls = new Walls(WIDTH, HEIGTH);
+            walls.Draw();
 
             Point p = new Point(4, 5, '*');
             Snake snake = new Snake(p, 4, Direction.RIGHT);
             snake.Draw();
 
-            var foodCreator = new FoodCreator(fieldWidth, fieldHeight, '$');
+            var foodCreator = new FoodCreator(WIDTH, HEIGTH, '$');
             var food = foodCreator.CreateFood();
             food.Draw();
 
             while (true)
             {
+                if (walls.IsHit(snake))
+                {
+                    Console.WriteLine("GAME OVER!");
+                    break;
+                }
                 if (snake.Eat(food)) {
                     food = foodCreator.CreateFood();
                     food.Draw();

@@ -8,14 +8,15 @@ namespace Snake
 {
     class Figure
     {
-    protected List<Point> pList;
+        public List<Point> pList;
+        public List<Point> PList => pList;
 
-/*
-        public Figure(List<Point> pList)
-        {
-            this.pList = pList;
-        }
-        */
+        /*
+                public Figure(List<Point> pList)
+                {
+                    this.pList = pList;
+                }
+                */
 
         public void Draw()
         {
