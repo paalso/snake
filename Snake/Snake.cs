@@ -68,6 +68,28 @@ namespace Snake
             return pList.Last().Next(direction);
         }
 
+        public bool IsHit(Figure figure)
+        {
+            var head = pList.Last();
+            foreach (var point in figure.PList)
+                if (head.IsHit(point))
+                    return true;
+            return false;
+        }
+
+        public bool SelfHit()
+        {
+            var head = pList.Last();
+            foreach (var point in PList)
+            {
+                if (point == head)
+                    continue;
+                if (head.IsHit(point))
+                    return true;
+            }
+            return false;
+        }
+
         private bool IsHit (Point point)
         {
             var head = pList.Last();

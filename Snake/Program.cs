@@ -37,7 +37,7 @@ namespace Snake
             walls.Draw();
 
             Point p = new Point(4, 5, '*');
-            Snake snake = new Snake(p, 4, Direction.RIGHT);
+            Snake snake = new Snake(p, 20, Direction.RIGHT);
             snake.Draw();
 
             var foodCreator = new FoodCreator(WIDTH, HEIGTH, '$');
@@ -46,7 +46,7 @@ namespace Snake
 
             while (true)
             {
-                if (walls.IsHit(snake))
+                if (walls.IsHit(snake) || snake.SelfHit())
                 {
                     Console.WriteLine("GAME OVER!");
                     break;
